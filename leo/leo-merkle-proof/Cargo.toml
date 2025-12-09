@@ -1,0 +1,9 @@
+[package]
+name = "leo-merkle-proof"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bincode = "2.0.1"
+rayon = "1.11.0"
+snarkvm = { version = "4.4.0", features = ["circuit", "console"] }
