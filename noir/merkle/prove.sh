@@ -1,0 +1,1 @@
+bb prove -b ./target/merkle.json -w ./target/merkle.gz --write_vk -o target
