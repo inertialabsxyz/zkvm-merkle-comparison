@@ -5,7 +5,8 @@ use std::fs::File;
 use std::io::{self, Write};
 use std::path::Path;
 
-pub fn write_proof<P: AsRef<Path>>(proof: &MerkleProof, path: P) -> io::Result<()> {
+const LEVELS: usize = 16;
+pub fn write_proof<P: AsRef<Path>>(proof: &MerkleProof<LEVELS>, path: P) -> io::Result<()> {
     let mut file = File::create(path)?;
     writeln!(file, "[proof]")?;
     writeln!(file, "index = \"{:?}\"", proof.index)?;
@@ -46,14 +47,14 @@ pub fn write_proof<P: AsRef<Path>>(proof: &MerkleProof, path: P) -> io::Result<(
 }
 
 fn main() {
-    let proof = create_proof::<Sha256>(42);
+    let proof = create_proof::<Sha256, LEVELS>(42);
     println!("Proof created");
-    let valid = verify::<Sha256>(proof.clone());
+    let valid = verify::<Sha256, LEVELS>(proof.clone());
     println!("The proof is valid {}", valid);
     let bytes = save_proof(&proof).expect("serialize");
     println!("bytes len: {}", bytes.len());
     let loaded_proof = load_proof(&bytes).expect("deserialized");
-    let valid = verify::<Sha256>(loaded_proof);
+    let valid = verify::<Sha256, LEVELS>(loaded_proof);
     println!("The proof is valid {}", valid);
     write_proof(&proof, "Prover.toml").expect("write to file");
     println!("Proof written to Prover.toml");
