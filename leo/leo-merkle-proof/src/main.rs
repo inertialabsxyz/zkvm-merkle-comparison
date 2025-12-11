@@ -1,5 +1,8 @@
-
-use merkle_verify::{create_proof, utils::{load_proof, save_proof, write_proof}, verify};
+use leo_merkle_proof::{
+    create_proof,
+    utils::{load_proof, save_proof, write_proof},
+    verify,
+};
 use snarkvm::prelude::*;
 
 const LEVELS: u32 = 16;
