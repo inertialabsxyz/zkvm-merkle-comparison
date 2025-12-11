@@ -1,0 +1,15 @@
+[package]
+name = "merkle_bin"
+version = "0.1.0"
+edition = "2024_07"
+
+[cairo]
+enable-gas = false
+
+[dependencies]
+cairo_execute = "2.13.1"
+
+
+[[target.executable]]
+name = "merkle_bin"
+function = "merkle_bin::merkle_bin::main"
