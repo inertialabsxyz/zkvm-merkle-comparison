@@ -1,0 +1,8 @@
+[package]
+name = "cairo-poseidon-merkle-proof"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+starknet-crypto = "0.8.1"
+starknet-types-core = "1.0.0"
